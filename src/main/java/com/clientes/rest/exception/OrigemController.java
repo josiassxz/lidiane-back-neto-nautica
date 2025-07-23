@@ -23,7 +23,7 @@ public class OrigemController {
 
     @GetMapping
     public ResponseEntity<List<Origem>> listarOrigens() {
-        List<Origem> origens = origemRepository.findAll();
+        List<Origem> origens = origemRepository.findAllByOrderByOrigem();
         return new ResponseEntity<>(origens, HttpStatus.OK);
     }
 

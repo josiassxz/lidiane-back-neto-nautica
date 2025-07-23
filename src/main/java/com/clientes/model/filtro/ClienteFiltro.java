@@ -15,5 +15,6 @@ String dtRecebimentoMax;
 String situacao;
 String captania;
 String semana;
+String semanaFinal;
 
 }

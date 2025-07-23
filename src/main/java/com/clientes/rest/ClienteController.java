@@ -58,10 +58,11 @@ public List<Cliente> obterTodosOrdenadosPorNome() {
 
     }
     @GetMapping("/pesquisar")
-    public List<Cliente> pesquisaAvancada(@RequestParam(required = false) String nome,@RequestParam(required = false) String origem,@RequestParam(required = false) String dtRecebimentoMim,@RequestParam(required = false) String dtRecebimento,@RequestParam(required = false) String dtRecebimentoMax ,@RequestParam(required = false) String situacao, @RequestParam(required = false) String captania,@RequestParam(required = false) String semana ){
+    public List<Cliente> pesquisaAvancada(@RequestParam(required = false) String nome,@RequestParam(required = false) String origem,@RequestParam(required = false) String dtRecebimentoMim,@RequestParam(required = false) String dtRecebimento,@RequestParam(required = false) String dtRecebimentoMax ,@RequestParam(required = false) String situacao, @RequestParam(required = false) String captania,@RequestParam(required = false) String semana, @RequestParam(required = false) String semanaFinal){
         return clienteRepositoryImpl.pesquisaAvancada(ClienteFiltro.builder().nome(nome)
                 .origem(origem)
-                        .semana(semana)
+                .semana(semana)
+                .semanaFinal(semanaFinal)
                 .dtRecebimentoMim(dtRecebimentoMim)
                 .dtRecebimentoMax(dtRecebimentoMax)
                 .dtRecebimento(dtRecebimento)

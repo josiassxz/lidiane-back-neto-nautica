@@ -61,7 +61,9 @@ public class ClienteRepositoryImpl implements CustomClienteRepository {
             where.append(" AND captania = :filtroCaptania");
 
         };
-        if(Objects.nonNull(filtro.getSemana())){
+        if(Objects.nonNull(filtro.getSemana()) && Objects.nonNull(filtro.getSemanaFinal())){
+            where.append(" AND DATE_FORMAT(semana,'%Y-%m-%d') BETWEEN STR_TO_DATE(:filtroSemana, '%Y-%m-%d') AND STR_TO_DATE(:filtroSemanaFinal, '%Y-%m-%d')");
+        } else if(Objects.nonNull(filtro.getSemana())){
             where.append(" AND DATE_FORMAT(semana,'%Y-%m-%d') = STR_TO_DATE(:filtroSemana, '%Y-%m-%d')");
         };
         return  where.toString();
@@ -89,7 +91,10 @@ public class ClienteRepositoryImpl implements CustomClienteRepository {
         if(Objects.nonNull(filtro.getCaptania())){
             query.setParameter("filtroCaptania", filtro.getCaptania().toUpperCase());
         };
-        if(Objects.nonNull(filtro.getSemana())){
+        if(Objects.nonNull(filtro.getSemana()) && Objects.nonNull(filtro.getSemanaFinal())){
+            query.setParameter("filtroSemana", filtro.getSemana());
+            query.setParameter("filtroSemanaFinal", filtro.getSemanaFinal());
+        } else if(Objects.nonNull(filtro.getSemana())){
             query.setParameter("filtroSemana", filtro.getSemana());
         };
         return  query;
